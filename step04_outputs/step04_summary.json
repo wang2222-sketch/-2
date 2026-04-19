@@ -1,0 +1,25 @@
+{
+  "step": "04_make_figures_and_report",
+  "task": "cell-state / m6A regulatory-state autoencoder",
+  "output_dir": "/Users/Zhuanz/Desktop/FYP/FYPmain-3/step04_outputs",
+  "figures": {
+    "training_nll_curves": "/Users/Zhuanz/Desktop/FYP/FYPmain-3/step04_outputs/plot_training_nll_curves.png",
+    "method_nll_comparison": "/Users/Zhuanz/Desktop/FYP/FYPmain-3/step04_outputs/plot_method_nll_comparison.png",
+    "embedding_panel": "/Users/Zhuanz/Desktop/FYP/FYPmain-3/step04_outputs/plot_embedding_panels_by_expression_cluster.png",
+    "neighbor_overlap": "/Users/Zhuanz/Desktop/FYP/FYPmain-3/step04_outputs/plot_neighbor_overlap.png",
+    "failure_reflection": "/Users/Zhuanz/Desktop/FYP/FYPmain-3/step04_outputs/plot_failure_reflection_all_nll.png",
+    "regulator_correlations": "/Users/Zhuanz/Desktop/FYP/FYPmain-3/step04_outputs/plot_regulator_correlations.png",
+    "regulator_heatmap": "/Users/Zhuanz/Desktop/FYP/FYPmain-3/step04_outputs/plot_regulator_correlation_heatmap.png",
+    "dca_style_heatmap": "/Users/Zhuanz/Desktop/FYP/FYPmain-3/step04_outputs/plot_dca_style_heatmap_panel.png",
+    "dca_style_tsne": "/Users/Zhuanz/Desktop/FYP/FYPmain-3/step04_outputs/plot_dca_style_tsne_panel.png"
+  },
+  "report": "/Users/Zhuanz/Desktop/FYP/FYPmain-3/step04_outputs/\u6574\u4f53IDEA\u62a5\u544a.MD",
+  "tsne_note": "exact_tsne_fallback:ModuleNotFoundError;exact_tsne_fallback:ModuleNotFoundError;exact_tsne_fallback:ModuleNotFoundError",
+  "cells": 997,
+  "sites": 135300,
+  "expression_vs_ae_ari": 0.6589774810960333,
+  "top_regulator_pair": "YTHDF2 vs latent_2",
+  "top_regulator_corr": -0.48950687050819397,
+  "passes_display_thresholds": true,
+  "note": "Step4 reads Step2 and Step3 outputs only; it does not train or resplit data."
+}
