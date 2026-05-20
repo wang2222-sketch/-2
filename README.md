@@ -4,7 +4,7 @@
 
 The original input file `scDART_hg38_WT_MAE.rds` is too large for normal GitHub storage. Download it from m6AConquer and place it in the project root before running the full workflow.
 
-- Download URL: <http://180.208.58.19/m6aconquer/Download/Human/MAE_WT/scDART_hg38_WT_MAE.rds>
+- Download URL: <[http://180.208.58.19/m6aconquer/Download/Human/MAE_WT/scDART_hg38_WT_MAE.rds](http://180.208.58.19/m6aconquer/Download/Human/MAE_WT/scDART_hg38_WT_MAE.rds)>
 - Expected local path: `./scDART_hg38_WT_MAE.rds`
 - File size: about 2.71 GB
 
