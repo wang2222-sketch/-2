@@ -1,0 +1,2 @@
+gene_source,n_sites,detected,detected_conservative,mean_event_prob,mean_event_prob_residual,mean_m6a_freq,mean_coverage_per_entry,detection_rate,detection_rate_conservative
+unknown,80303,29086,14107,0.35332766987587394,0.3320122639087338,0.019899825025714763,91.93088356510104,0.3622031555483606,0.17567214176307236
