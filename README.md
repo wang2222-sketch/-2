@@ -8,6 +8,8 @@ The original input file `scDART_hg38_WT_MAE.rds` is too large for normal GitHub 
 - Expected local path: `./scDART_hg38_WT_MAE.rds`
 - File size: about 2.71 GB
 
+On GitHub, clicking this link directly will not download the file and may show that the link is unsafe. Please copy the link and open it in your browser to download,or:
+
 Download example:
 
 ```bash
