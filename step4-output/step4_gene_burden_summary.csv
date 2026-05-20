@@ -1,0 +1,2 @@
+gene_symbol,n_sites,detected_sites,detected_sites_conservative,detection_fraction,detection_fraction_conservative,mean_event_prob,median_event_prob,max_event_prob,mean_m6a_freq,total_Y,total_N,mean_coverage_per_entry,mean_event_prob_residual,max_event_prob_residual,gene_source,coverage_weighted_m6a_freq,is_gene_panel
+unknown,80303,29086,14107,0.3622031555483606,0.17567214176307236,0.35332766987587394,0.34776482,0.99928916,0.019899825025714763,20857744.0,815338655,91.93088356510104,0.3320122639087338,0.9328199644999999,unknown,0.025581694026269367,1
