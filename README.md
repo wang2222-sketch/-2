@@ -1,5 +1,46 @@
 # scDART-seq m6A Sparse Autoencoder Workflow
 
+## Workflow Mind Map
+
+```mermaid
+flowchart LR
+    A["Raw data<br/>scDART_hg38_WT_MAE.rds<br/>download separately"] --> B["Step1<br/>Rscript step01_extract_validated_subset.R<br/>--input scDART_hg38_WT_MAE.rds --outdir ."]
+
+    B --> B1["Project root<br/>step01_scDART_hg38_WT_MAE_validated_m6a.rds"]
+    B --> B2["Project root<br/>step01_scDART_hg38_WT_MAE_validated_transcript.rds"]
+    B --> B3["Project root<br/>step01_summary.txt"]
+
+    B1 --> C["Step2<br/>Rscript step02_qc_build_inputs_three_tier.R"]
+    B2 --> C
+
+    C --> C1["step2-output/<br/>observed_entries.tsv.gz<br/>candidate_m6a_entries.tsv.gz<br/>significant_entries.tsv.gz"]
+    C --> C2["step2-output/<br/>cell_metadata.csv<br/>site_metadata.csv<br/>cell_qc.csv<br/>site_qc.csv"]
+    C --> C3["step2-output/<br/>expression_anchor.csv<br/>regulator_expression.csv<br/>step02_qc_report.md"]
+
+    C2 --> C4["Optional QC figures<br/>python step02_visualize_cell_qc_tukey.py"]
+    C4 --> C5["step2-output/figures/<br/>cell QC plots"]
+
+    C1 --> D["Step3<br/>python step03_train_validate_autoencoder.py<br/>--root . --step2-dir step2-output --outdir step3-output"]
+    C2 --> D
+
+    D --> D1["step3-output/<br/>observed_predictions.tsv.gz<br/>real_labels_model.pt<br/>permuted_train_labels_model.pt"]
+    D --> D2["step3-output/<br/>model_validation_summary.csv<br/>baseline_comparison.csv<br/>validation_decision.csv"]
+    D --> D3["step3-output/<br/>cell_scores.csv<br/>site_scores.csv<br/>latent.csv"]
+
+    D2 --> E["Step3 visualization<br/>python step03_visualization.py<br/>--root . --step3-dir step3-output --outdir step3-visualization-output"]
+    D3 --> E
+    E --> E1["step3-visualization-output/<br/>figures/<br/>step3_visualization_report.md<br/>top_100_predicted_sites.csv"]
+
+    D1 --> F["Step4<br/>python step4_integrated_analysis_visualization.py<br/>--root . --split test"]
+    C2 --> F
+    G["Optional external evidence<br/>external-m6aconquer/raw/"] --> F
+
+    F --> F1["step4-output/<br/>step4_site_detection_summary.csv<br/>step4_gene_burden_summary.csv<br/>step4_key_metrics.json"]
+    F --> F2["step4-output/<br/>step4_report.md<br/>step4_external_*.csv if enabled"]
+    F --> F3["step4-output/figures/<br/>fig*.png<br/>_classified/"]
+```
+
+
 ## Original Data Download
 
 The original input file `scDART_hg38_WT_MAE.rds` is too large for normal GitHub storage. Download it from m6AConquer and place it in the project root before running the full workflow.
@@ -179,45 +220,6 @@ The mechanism is:
 
 The expected interpretation is ranking-oriented: Step3 scores are useful for ranking and enrichment analysis, but they should not be over-claimed as perfectly calibrated absolute methylation probabilities.
 
-## Workflow Mind Map
-
-```mermaid
-flowchart LR
-    A["Raw data<br/>scDART_hg38_WT_MAE.rds<br/>download separately"] --> B["Step1<br/>Rscript step01_extract_validated_subset.R<br/>--input scDART_hg38_WT_MAE.rds --outdir ."]
-
-    B --> B1["Project root<br/>step01_scDART_hg38_WT_MAE_validated_m6a.rds"]
-    B --> B2["Project root<br/>step01_scDART_hg38_WT_MAE_validated_transcript.rds"]
-    B --> B3["Project root<br/>step01_summary.txt"]
-
-    B1 --> C["Step2<br/>Rscript step02_qc_build_inputs_three_tier.R"]
-    B2 --> C
-
-    C --> C1["step2-output/<br/>observed_entries.tsv.gz<br/>candidate_m6a_entries.tsv.gz<br/>significant_entries.tsv.gz"]
-    C --> C2["step2-output/<br/>cell_metadata.csv<br/>site_metadata.csv<br/>cell_qc.csv<br/>site_qc.csv"]
-    C --> C3["step2-output/<br/>expression_anchor.csv<br/>regulator_expression.csv<br/>step02_qc_report.md"]
-
-    C2 --> C4["Optional QC figures<br/>python step02_visualize_cell_qc_tukey.py"]
-    C4 --> C5["step2-output/figures/<br/>cell QC plots"]
-
-    C1 --> D["Step3<br/>python step03_train_validate_autoencoder.py<br/>--root . --step2-dir step2-output --outdir step3-output"]
-    C2 --> D
-
-    D --> D1["step3-output/<br/>observed_predictions.tsv.gz<br/>real_labels_model.pt<br/>permuted_train_labels_model.pt"]
-    D --> D2["step3-output/<br/>model_validation_summary.csv<br/>baseline_comparison.csv<br/>validation_decision.csv"]
-    D --> D3["step3-output/<br/>cell_scores.csv<br/>site_scores.csv<br/>latent.csv"]
-
-    D2 --> E["Step3 visualization<br/>python step03_visualization.py<br/>--root . --step3-dir step3-output --outdir step3-visualization-output"]
-    D3 --> E
-    E --> E1["step3-visualization-output/<br/>figures/<br/>step3_visualization_report.md<br/>top_100_predicted_sites.csv"]
-
-    D1 --> F["Step4<br/>python step4_integrated_analysis_visualization.py<br/>--root . --split test"]
-    C2 --> F
-    G["Optional external evidence<br/>external-m6aconquer/raw/"] --> F
-
-    F --> F1["step4-output/<br/>step4_site_detection_summary.csv<br/>step4_gene_burden_summary.csv<br/>step4_key_metrics.json"]
-    F --> F2["step4-output/<br/>step4_report.md<br/>step4_external_*.csv if enabled"]
-    F --> F3["step4-output/figures/<br/>fig*.png<br/>_classified/"]
-```
 
 ## Input Data
 
